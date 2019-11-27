@@ -2,10 +2,15 @@ package grupo2reproductor;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.io.File;
+import java.nio.file.Paths;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import jaco.mp3.player.MP3Player;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
@@ -25,6 +30,43 @@ public class Grupo2Reproductor extends JFrame {
     private javax.swing.JLabel reproducir;
     private javax.swing.JLabel songDisplayName;
     private javax.swing.JLabel stop;
+ //Se crean varaibles que se usaran para propositos varios
+    
+    MP3Player player;
+    File songFile;
+    String imagePath;
+    String currentPath;
+    boolean repeat=false;
+    boolean isMute=false;
+    boolean windowsCollapse=false;
+    int xMouse, yMouse;
+    int anteriorY, anteriorX, miniaturaAnteriorX=150, miniaturaAnteriorY=500;
+    
+    //creamos el contrusctor de nuestra ventana e inicializamos algunas variables
+    public Grupo2Reproductor () {
+    	initComponents(); //Llamamos a initComponent la cual instancia nuestros JLabel y asigna sus propiedades
+
+    	songFile = new File("");
+    	
+    	String fileName=songFile.getName();
+    	
+    	songDisplayName.setText(fileName);
+    	
+    	player=mp3Player();
+    	
+    	player.addToPlayList(songFile);
+    	
+    	currentPath=Paths.get(".").toAbsolutePath().normalize().toString();
+    	
+    	imagePath="\\ZimIcon";
+    }
+    
+    //Construimos nuestro propio objeto reproductor
+    private MP3Player mp3Player() {
+    	
+    	MP3Player mp3Player =new MP3Player();
+    	return mp3Player;
+    }
 
 	
     private void initComponents() {
