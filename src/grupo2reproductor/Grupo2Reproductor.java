@@ -170,9 +170,7 @@ public class Grupo2Reproductor extends JFrame {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 songDisplayNameMousePressed(evt);
             }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                songDisplayNameMouseReleased(evt);
-            }
+            
         });
 
         labelSound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZimIcon/sound_ona.png"))); // NOI18N
@@ -441,10 +439,7 @@ public class Grupo2Reproductor extends JFrame {
 
     }                                            
 
-    private void songDisplayNameMouseReleased(java.awt.event.MouseEvent evt) {                                              
-        // TODO add your handling code here:
-        
-    }                                             
+                                            
 
     private void songDisplayNameMouseDragged(java.awt.event.MouseEvent evt) {                                             
         // TODO add your handling code here:
