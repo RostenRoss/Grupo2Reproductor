@@ -14,6 +14,7 @@ import jaco.mp3.player.MP3Player;
 import javax.swing.JLabel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 
 public class Grupo2Reproductor extends JFrame {
 
@@ -35,6 +36,7 @@ public class Grupo2Reproductor extends JFrame {
     
     MP3Player player;
     File songFile;
+    String currentDirectory="home.user";
     String imagePath;
     String currentPath;
     boolean repeat=false;
@@ -134,9 +136,7 @@ public class Grupo2Reproductor extends JFrame {
         anteriorTema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZimIcon/zim-upLeft.png"))); // NOI18N
         anteriorTema.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         anteriorTema.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                anteriorTemaMouseClicked(evt);
-            }
+           
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 anteriorTemaMousePressed(evt);
             }
@@ -147,9 +147,7 @@ public class Grupo2Reproductor extends JFrame {
 
         proximoTema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZimIcon/zim-uprigth.png"))); // NOI18N
         proximoTema.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                proximoTemaMouseClicked(evt);
-            }
+          
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 proximoTemaMousePressed(evt);
             }
@@ -381,7 +379,16 @@ public class Grupo2Reproductor extends JFrame {
         // TODO add your handling code here: //para cargar seleccion multiple de temas
         player.stop();
     }
-    
+     private void stopMouseReleased(java.awt.event.MouseEvent evt) {                                   
+        Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/zim-center.png"));
+        pausa.setIcon(icono);
+        pausa.repaint();
+    }                                  
+
+    private void stopMousePressed(java.awt.event.MouseEvent evt) {                                  
+        Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/zim-center_pressed.png"));
+        pausa.setIcon(icono);
+        pausa.repaint();    }  
 
     private void reproducirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reproducirMouseReleased
         // TODO add your handling code here:
@@ -393,9 +400,160 @@ public class Grupo2Reproductor extends JFrame {
 
     private void reproducirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reproducirMouseClicked
         // TODO add your handling code here:
-        
         player.play();
     }
+    
+  private void labelSoundMouseClicked(java.awt.event.MouseEvent evt) {                                        
+        // TODO add your handling code here:
+        if (!isMute) {
+            isMute=true;
+            //proximamente se muteara
+            Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/sound_off.png"));
+            labelSound.setIcon(icono);
+        }else{
+            isMute=false;
+            //proximamente se habilitara
+            Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/sound_ona.png"));
+            labelSound.setIcon(icono);
+        }
+    }                                       
+
+    private void labelRepeatMouseClicked(java.awt.event.MouseEvent evt) {                                         
+        // TODO add your handling code here:
+        if(!repeat){
+            repeat=true;
+            player.setRepeat(repeat);
+            Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/repeat.png"));
+            labelRepeat.setIcon(icono);
+        }else {
+            repeat=false;
+            player.setRepeat(repeat);
+            Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/no_repeat.png"));
+            labelRepeat.setIcon(icono);
+        }
+    }                                        
+
+    private void songDisplayNameMousePressed(java.awt.event.MouseEvent evt) {                                             
+        // TODO add your handling code here:
+        xMouse=evt.getX()+90;
+        yMouse=evt.getY()+90;
+        System.out.println("Al presionar: X: "+(xMouse)+", Y: "+(yMouse));
+
+    }                                            
+
+    private void songDisplayNameMouseReleased(java.awt.event.MouseEvent evt) {                                              
+        // TODO add your handling code here:
+        
+    }                                             
+
+    private void songDisplayNameMouseDragged(java.awt.event.MouseEvent evt) {                                             
+        // TODO add your handling code here:
+        int x=evt.getXOnScreen();
+        int y=evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
+        System.out.println("X: "+(x-xMouse)+", Y: "+(y-yMouse));
+    }                                            
+
+    private void openLabelMouseClicked(java.awt.event.MouseEvent evt) {                                       
+        // TODO add your handling code here:
+        JFileChooser openFileChooser= new JFileChooser(currentDirectory);
+        openFileChooser.setFileFilter(new FileTypeFilter("mp3", "Open MP3 Files Only!!"));
+        int result=openFileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            songFile=openFileChooser.getSelectedFile();
+            player.addToPlayList(songFile);
+            player.skipForward();
+            currentDirectory=songFile.getAbsolutePath();
+            songDisplayName.setText("Estas escuchando... | "+songFile.getName()+"---");
+        }
+    }                                      
+
+    private void minLabelMousePressed(java.awt.event.MouseEvent evt) {                                      
+        // TODO add your handling code here:
+            Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/face.png"));
+            minLabel.setIcon(icono);
+    }                                     
+
+    private void minLabelMouseReleased(java.awt.event.MouseEvent evt) {                                       
+        // TODO add your handling code here:
+            Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/pokerFace.png"));
+            minLabel.setIcon(icono);
+            if (!windowsCollapse) {
+                windowsCollapse=true;
+                minLabel.setVisible(false);
+                labelRepeat.setVisible(false);
+                stop.setVisible(false);
+                reproducir.setVisible(false);
+                pausa.setVisible(false);
+                anteriorTema.setVisible(false);
+                proximoTema.setVisible(false);
+                songDisplayName.setVisible(false);
+                labelSound.setVisible(false);
+                labelRepeat.setVisible(false);
+                openLabel.setVisible(false);
+                labelSoundDown.setVisible(false);
+                labelSoundUp.setVisible(false);
+                
+                Icon iconoMiniatura =new ImageIcon(getClass( ).getResource("/ZimIcon/miniatura-irken.png"));
+                miniaturaLabel.setIcon(iconoMiniatura);
+                anteriorX=evt.getXOnScreen();
+                anteriorY=evt.getYOnScreen();
+                this.setLocation(miniaturaAnteriorX-200,miniaturaAnteriorY-300);
+                miniaturaLabel.setVisible(true);
+                
+            }
+            
+    }                                      
+
+    private void miniaturaLabelMouseClicked(java.awt.event.MouseEvent evt) {                                            
+        // TODO add your handling code here:
+        if (windowsCollapse) {
+                
+                windowsCollapse=false;
+                minLabel.setVisible(true);
+                labelRepeat.setVisible(true);
+                stop.setVisible(true);
+                reproducir.setVisible(true);
+                pausa.setVisible(true);
+                anteriorTema.setVisible(true);
+                proximoTema.setVisible(true);
+                songDisplayName.setVisible(true);
+                labelSound.setVisible(true);
+                labelRepeat.setVisible(true);
+                openLabel.setVisible(true);
+                labelSoundUp.setVisible(true);
+                labelSoundDown.setVisible(true);
+                miniaturaAnteriorX=evt.getXOnScreen();
+                miniaturaAnteriorY=evt.getYOnScreen();
+                this.setLocation(anteriorX-200,anteriorY-20);
+                miniaturaLabel.setVisible(false);
+            }
+    }                                           
+
+    private void labelSoundDownMouseClicked(java.awt.event.MouseEvent evt) {                                            
+        // TODO add your handling code here:
+        //Aqui va el metodo para bajar el volumen: proxiamante
+    }                                           
+
+    private void labelSoundUpMouseClicked(java.awt.event.MouseEvent evt) {                                          
+        // TODO add your handling code here:
+        //Aqui va el metodo para subir el volumen: proxiamante
+    }                                         
+
+    private void miniaturaLabelMousePressed(java.awt.event.MouseEvent evt) {                                            
+        // TODO add your handling code here:
+        xMouse=evt.getX()+180;
+            yMouse=evt.getY()+240;
+
+    }                                           
+
+    private void miniaturaLabelMouseDragged(java.awt.event.MouseEvent evt) {                                            
+        // TODO add your handling code here:
+         int x=evt.getXOnScreen();
+        int y=evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
+        System.out.println("X: "+(x-xMouse)+", Y: "+(y-yMouse));
+    }                                           
 
     
     
