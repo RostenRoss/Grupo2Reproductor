@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import jaco.mp3.player.MP3Player;
 
 import javax.swing.JLabel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class Grupo2Reproductor extends JFrame {
@@ -70,6 +71,7 @@ public class Grupo2Reproductor extends JFrame {
 
 	
     private void initComponents() {
+
 
         stop = new javax.swing.JLabel();
         reproducir = new javax.swing.JLabel();
@@ -308,7 +310,98 @@ public class Grupo2Reproductor extends JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>  
-	public static void main(String[] args) {
+	
+    
+    //Acciones de mouse
+    private void anteriorTemaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anteriorTemaMousePressed
+        // TODO add  handling code here:
+        System.out.println("Estas presionando el boton para ir un tema atras");
+        Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/zim-upLeft-Pressed.png"));
+        anteriorTema.setIcon(icono);
+        anteriorTema.repaint();
+        
+    }
+
+    private void proximoTemaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proximoTemaMousePressed
+        // TODO add your handling code here:
+        System.out.println("Estas presionando el boton para ir un tema adelante");
+        Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/zim-uprigth_pressed.png"));
+        proximoTema.setIcon(icono);
+        proximoTema.repaint();
+    }
+    
+    private void pausaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pausaMousePressed
+        // TODO add your handling code here:
+        
+        System.out.println("Estas presionando el boton de arriba");
+        Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/zim-up_pressed.png"));
+        pausa.setIcon(icono);
+        pausa.repaint();
+    }
+
+    private void reproducirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reproducirMousePressed
+        // TODO add your handling code here:
+        System.out.println("Estas presionando el boton de play/stop");
+        Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/zim-down_pressed.png"));
+        reproducir.setIcon(icono);
+        reproducir.repaint();
+    }
+
+ 
+    private void anteriorTemaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anteriorTemaMouseReleased
+        // TODO add your handling code here:
+        Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/zim-upLeft.png"));
+        anteriorTema.setIcon(icono);
+        anteriorTema.repaint();
+
+    }
+
+    private void proximoTemaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proximoTemaMouseReleased
+        // TODO add your handling code here:
+        Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/zim-uprigth.png"));
+        proximoTema.setIcon(icono);
+        proximoTema.repaint();
+    }
+
+   
+
+    private void pausaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pausaMouseReleased
+        // TODO add your handling code here:
+        Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/zim-up.png"));
+        pausa.setIcon(icono);
+        pausa.repaint();
+    }
+
+    private void pausaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pausaMouseClicked
+        // TODO add your handling code here:
+        player.pause();
+    }
+
+    private void stopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stopMouseClicked
+        // TODO add your handling code here: //para cargar seleccion multiple de temas
+        player.stop();
+    }
+    
+
+    private void reproducirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reproducirMouseReleased
+        // TODO add your handling code here:
+        System.out.println("Estas presionando el boton de abajo");
+        Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/zim-down.png"));
+        reproducir.setIcon(icono);
+        reproducir.repaint();
+    }
+
+    private void reproducirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reproducirMouseClicked
+        // TODO add your handling code here:
+        
+        player.play();
+    }
+
+    
+    
+    
+    //Metodo main
+    public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
