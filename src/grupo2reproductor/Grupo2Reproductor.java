@@ -12,6 +12,12 @@ import javax.swing.border.EmptyBorder;
 import jaco.mp3.player.MP3Player;
 
 import javax.swing.JLabel;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.Line;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.Mixer;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -552,6 +558,185 @@ public class Grupo2Reproductor extends JFrame {
 
     
     
+    
+    //metodo personalizado apra bajar el volumen
+    private void volumeDownControl(Double valueToPlusMinus){
+        //obtenemos informacion del mixer del sistema de audio
+        Mixer.Info[] mixers = AudioSystem.getMixerInfo();
+        
+        //listamos todos los mixers
+        for (Mixer.Info mixerInfo : mixers) {
+            //obtenemos el mixer
+            Mixer mixer =AudioSystem.getMixer(mixerInfo);
+            
+            //Obtejemos la linea que es objetivo 
+            Line.Info[] lineInfos = mixer.getTargetLineInfo();
+            
+            //Usamos un ciclo para listar las lineas
+            for (Line.Info lineInfo : lineInfos) {
+                //hacemos una linea nula
+                Line line=null;
+                //hacemos un buleano si fue abierto
+                boolean opened= true;
+                
+                //ahora usamos una excepcion para abrir una linea
+                try {
+                    line=mixer.getLine(lineInfo);
+                    opened = line.isOpen() || line instanceof Clip;
+                    
+                    //ahora chequeamos que n oes te abierta
+                    if (!opened) {
+                        line.open();
+                    }
+                    //hacemos un control flotante
+                    FloatControl volControl = (FloatControl) line.getControl(FloatControl.Type.VOLUME);
+                    
+                    //obtenemos el volumen actual
+                    float currentVolume = volControl.getValue();
+                    
+                    //hacemos una variable doble temporal y guardamos el valuePlusMinus
+                    Double volumeToCut=valueToPlusMinus;
+                    
+                    //hacemos un flotante y calculamos la adicion o sustracion del volumen
+                    
+                    float changedCalc = (float) ((float)currentVolume-(double)volumeToCut);
+                    
+                    //ahora seteamos el volumen cambiado dentro de la linea de volumen
+                    volControl.setValue(changedCalc);
+                            
+                } catch (LineUnavailableException e) {
+                } catch(IllegalArgumentException e){
+                }  finally{
+                    //cerramos las lineas abierta
+                    if (line !=null && !opened) {
+                        line.close();
+                    }
+                
+                }
+            }
+            
+            
+        }
+    }
+        //metodo para subir el volumen
+     private void volumeUpControl(Double valueToPlusMinus){
+        //obtenemos informacion del mixer del sistema de audio
+        Mixer.Info[] mixers = AudioSystem.getMixerInfo();
+        
+        //listamos todos los mixers
+        for (Mixer.Info mixerInfo : mixers) {
+            //obtenemos el mixer
+            Mixer mixer =AudioSystem.getMixer(mixerInfo);
+            
+            //Obtejemos la linea que es objetivo 
+            Line.Info[] lineInfos = mixer.getTargetLineInfo();
+            
+            //Usamos un ciclo para listar las lineas
+            for (Line.Info lineInfo : lineInfos) {
+                //hacemos una linea nula
+                Line line=null;
+                //hacemos un buleano si fue abierto
+                boolean opened= true;
+                
+                //ahora usamos una excepcion para abrir una linea
+                try {
+                    line=mixer.getLine(lineInfo);
+                    opened = line.isOpen() || line instanceof Clip;
+                    
+                    //ahora chequeamos que n oes te abierta
+                    if (!opened) {
+                        line.open();
+                    }
+                    //hacemos un control flotante
+                    FloatControl volControl = (FloatControl) line.getControl(FloatControl.Type.VOLUME);
+                    
+                    //obtenemos el volumen actual
+                    float currentVolume = volControl.getValue();
+                    
+                    //hacemos una variable doble temporal y guardamos el valuePlusMinus
+                    Double volumeToCut=valueToPlusMinus;
+                    
+                    //hacemos un flotante y calculamos la adicion o sustracion del volumen
+                    
+                    float changedCalc = (float) ((float)currentVolume+(double)volumeToCut);
+                    
+                    //ahora seteamos el volumen cambiado dentro de la linea de volumen
+                    volControl.setValue(changedCalc);
+                            
+                } catch (LineUnavailableException e) {
+                } catch(IllegalArgumentException e){
+                }  finally{
+                    //cerramos las lineas abierta
+                    if (line !=null && !opened) {
+                        line.close();
+                    }
+                
+                }
+            }
+            
+            
+        }
+    }
+        //metodo de contro lde volumen
+      private void volumeControl(Double valueToPlusMinus){
+        //obtenemos informacion del mixer del sistema de audio
+        Mixer.Info[] mixers = AudioSystem.getMixerInfo();
+        
+        //listamos todos los mixers
+        for (Mixer.Info mixerInfo : mixers) {
+            //obtenemos el mixer
+            Mixer mixer =AudioSystem.getMixer(mixerInfo);
+            
+            //Obtejemos la linea que es objetivo 
+            Line.Info[] lineInfos = mixer.getTargetLineInfo();
+            
+            //Usamos un ciclo para listar las lineas
+            for (Line.Info lineInfo : lineInfos) {
+                //hacemos una linea nula
+                Line line=null;
+                //hacemos un buleano si fue abierto
+                boolean opened= true;
+                
+                //ahora usamos una excepcion para abrir una linea
+                try {
+                    line=mixer.getLine(lineInfo);
+                    
+                    opened = line.isOpen() || line instanceof Clip;
+                    
+                    //ahora chequeamos que n oes te abierta
+                    if (!opened) {
+                        line.open();
+                    }
+                    //hacemos un control flotante
+                    FloatControl volControl = (FloatControl) line.getControl(FloatControl.Type.VOLUME);
+                    
+                    //obtenemos el volumen actual
+                    float currentVolume = volControl.getValue();
+                    
+                    //hacemos una variable doble temporal y guardamos el valuePlusMinus
+                    Double volumeToCut=valueToPlusMinus;
+                    
+                    //hacemos un flotante y calculamos la adicion o sustracion del volumen
+                    
+                    float changedCalc = (float) ((double)volumeToCut);
+                    
+                    //ahora seteamos el volumen cambiado dentro de la linea de volumen
+                    volControl.setValue(changedCalc);
+                            
+                } catch (LineUnavailableException e) {
+                } catch(IllegalArgumentException e){
+                }  finally{
+                    //cerramos las lineas abierta
+                    if (line !=null && !opened) {
+                        line.close();
+                    }
+                
+                }
+            }
+            
+            
+        }
+    }
     
     //Metodo main
     public static void main(String[] args) {
