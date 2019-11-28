@@ -412,14 +412,14 @@ public class Grupo2Reproductor extends JFrame {
     }
      private void stopMouseReleased(java.awt.event.MouseEvent evt) {                                   
         Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/zim-center.png"));
-        pausa.setIcon(icono);
-        pausa.repaint();
+        stop.setIcon(icono);
+        stop.repaint();
     }                                  
 
     private void stopMousePressed(java.awt.event.MouseEvent evt) {                                  
         Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/zim-center_pressed.png"));
-        pausa.setIcon(icono);
-        pausa.repaint();    }  
+        stop.setIcon(icono);
+        stop.repaint();    }  
 
     private void reproducirMouseReleased(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
@@ -492,7 +492,7 @@ public class Grupo2Reproductor extends JFrame {
             player.addToPlayList(songFile);
             player.skipForward();
             currentDirectory=songFile.getAbsolutePath();
-            songDisplayName.setText("Playing:"+songFile.getName()+"---");
+            songDisplayName.setText("Playing: "+songFile.getName()+"---");
         }
     }                                      
 
