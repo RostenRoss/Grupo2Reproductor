@@ -1,5 +1,6 @@
 package grupo2reproductor;
 
+import com.sun.awt.AWTUtilities;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.io.File;
@@ -55,6 +56,8 @@ public class Grupo2Reproductor extends JFrame {
     public Grupo2Reproductor () {
     	initComponents(); //Llamamos a initComponent la cual instancia nuestros JLabel y asigna sus propiedades
 
+        AWTUtilities.setWindowOpaque(this, false);
+
     	songFile = new File("");
     	
     	String fileName=songFile.getName();
@@ -102,12 +105,15 @@ public class Grupo2Reproductor extends JFrame {
 
         stop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZimIcon/zim-center.png"))); // NOI18N
         stop.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 stopMouseClicked(evt);
             }
+            @Override
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 stopMousePressed(evt);
             }
+            @Override
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 stopMouseReleased(evt);
             }
@@ -115,12 +121,15 @@ public class Grupo2Reproductor extends JFrame {
 
         reproducir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZimIcon/zim-down.png"))); // NOI18N
         reproducir.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 reproducirMouseClicked(evt);
             }
+            @Override
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 reproducirMousePressed(evt);
             }
+            @Override
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 reproducirMouseReleased(evt);
             }
@@ -128,12 +137,15 @@ public class Grupo2Reproductor extends JFrame {
 
         pausa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZimIcon/zim-up.png"))); // NOI18N
         pausa.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pausaMouseClicked(evt);
             }
+            @Override
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 pausaMousePressed(evt);
             }
+            @Override
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 pausaMouseReleased(evt);
             }
@@ -143,9 +155,11 @@ public class Grupo2Reproductor extends JFrame {
         anteriorTema.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         anteriorTema.addMouseListener(new java.awt.event.MouseAdapter() {
            
+            @Override
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 anteriorTemaMousePressed(evt);
             }
+            @Override
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 anteriorTemaMouseReleased(evt);
             }
@@ -154,9 +168,11 @@ public class Grupo2Reproductor extends JFrame {
         proximoTema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZimIcon/zim-uprigth.png"))); // NOI18N
         proximoTema.addMouseListener(new java.awt.event.MouseAdapter() {
           
+            @Override
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 proximoTemaMousePressed(evt);
             }
+            @Override
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 proximoTemaMouseReleased(evt);
             }
@@ -168,11 +184,13 @@ public class Grupo2Reproductor extends JFrame {
         songDisplayName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 51), 1, true));
         songDisplayName.setOpaque(true);
         songDisplayName.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            @Override
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 songDisplayNameMouseDragged(evt);
             }
         });
         songDisplayName.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 songDisplayNameMousePressed(evt);
             }
@@ -181,6 +199,7 @@ public class Grupo2Reproductor extends JFrame {
 
         labelSound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZimIcon/sound_ona.png"))); // NOI18N
         labelSound.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelSoundMouseClicked(evt);
             }
@@ -188,6 +207,7 @@ public class Grupo2Reproductor extends JFrame {
 
         labelRepeat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZimIcon/no_repeat.png"))); // NOI18N
         labelRepeat.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelRepeatMouseClicked(evt);
             }
@@ -195,6 +215,7 @@ public class Grupo2Reproductor extends JFrame {
 
         openLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZimIcon/select.png"))); // NOI18N
         openLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 openLabelMouseClicked(evt);
             }
@@ -202,23 +223,28 @@ public class Grupo2Reproductor extends JFrame {
 
         minLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZimIcon/pokerFace.png"))); // NOI18N
         minLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 minLabelMousePressed(evt);
             }
+            @Override
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 minLabelMouseReleased(evt);
             }
         });
 
         miniaturaLabel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            @Override
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 miniaturaLabelMouseDragged(evt);
             }
         });
         miniaturaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 miniaturaLabelMouseClicked(evt);
             }
+            @Override
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 miniaturaLabelMousePressed(evt);
             }
@@ -226,6 +252,7 @@ public class Grupo2Reproductor extends JFrame {
 
         labelSoundDown.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZimIcon/menos.png"))); // NOI18N
         labelSoundDown.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelSoundDownMouseClicked(evt);
             }
@@ -394,7 +421,7 @@ public class Grupo2Reproductor extends JFrame {
         pausa.setIcon(icono);
         pausa.repaint();    }  
 
-    private void reproducirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reproducirMouseReleased
+    private void reproducirMouseReleased(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
         System.out.println("Estas presionando el boton de abajo");
         Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/zim-down.png"));
@@ -402,7 +429,7 @@ public class Grupo2Reproductor extends JFrame {
         reproducir.repaint();
     }
 
-    private void reproducirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reproducirMouseClicked
+    private void reproducirMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
         player.play();
     }
@@ -411,12 +438,12 @@ public class Grupo2Reproductor extends JFrame {
         // TODO add your handling code here:
         if (!isMute) {
             isMute=true;
-            //proximamente se muteara
+            volumeControl(0.0);
             Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/sound_off.png"));
             labelSound.setIcon(icono);
         }else{
             isMute=false;
-            //proximamente se habilitara
+            volumeControl(1.0);
             Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/sound_ona.png"));
             labelSound.setIcon(icono);
         }
@@ -465,7 +492,7 @@ public class Grupo2Reproductor extends JFrame {
             player.addToPlayList(songFile);
             player.skipForward();
             currentDirectory=songFile.getAbsolutePath();
-            songDisplayName.setText("Estas escuchando... | "+songFile.getName()+"---");
+            songDisplayName.setText("Playing:"+songFile.getName()+"---");
         }
     }                                      
 
@@ -741,6 +768,7 @@ public class Grupo2Reproductor extends JFrame {
     //Metodo main
     public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+                        @Override
 			public void run() {
 				try {
 					Grupo2Reproductor frame = new Grupo2Reproductor();
