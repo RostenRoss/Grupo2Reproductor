@@ -533,12 +533,12 @@ public class Grupo2Reproductor extends JFrame {
 
     private void labelSoundDownMouseClicked(java.awt.event.MouseEvent evt) {                                            
         // TODO add your handling code here:
-        //Aqui va el metodo para bajar el volumen: proxiamante
+        volumeUpControl(0.1);
     }                                           
 
     private void labelSoundUpMouseClicked(java.awt.event.MouseEvent evt) {                                          
         // TODO add your handling code here:
-        //Aqui va el metodo para subir el volumen: proxiamante
+        volumeUpControl(0.1);
     }                                         
 
     private void miniaturaLabelMousePressed(java.awt.event.MouseEvent evt) {                                            
