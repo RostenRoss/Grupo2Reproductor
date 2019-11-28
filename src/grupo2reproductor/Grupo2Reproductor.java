@@ -50,7 +50,7 @@ public class Grupo2Reproductor extends JFrame {
     boolean isMute=false;
     boolean windowsCollapse=false;
     int xMouse, yMouse;
-    int anteriorY, anteriorX, miniaturaAnteriorX=150, miniaturaAnteriorY=500;
+    int anteriorY, anteriorX, miniaturaAnteriorX=600, miniaturaAnteriorY=400;
     
     //creamos el contrusctor de nuestra ventana e inicializamos algunas variables
     public Grupo2Reproductor () {
