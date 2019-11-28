@@ -56,7 +56,7 @@ public class Grupo2Reproductor extends JFrame {
     public Grupo2Reproductor () {
     	initComponents(); //Llamamos a initComponent la cual instancia nuestros JLabel y asigna sus propiedades
 
-        AWTUtilities.setWindowOpaque(this, false);
+        AWTUtilities.setWindowOpaque(this, false); //transparenta el frame para que no se vea la venta.
 
     	songFile = new File("");
     	
@@ -560,7 +560,7 @@ public class Grupo2Reproductor extends JFrame {
 
     private void labelSoundDownMouseClicked(java.awt.event.MouseEvent evt) {                                            
         // TODO add your handling code here:
-        volumeUpControl(0.1);
+        volumeDownControl(0.1);
     }                                           
 
     private void labelSoundUpMouseClicked(java.awt.event.MouseEvent evt) {                                          
