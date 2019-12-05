@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import jaco.mp3.player.MP3Player;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.sound.sampled.AudioSystem;
@@ -163,6 +164,10 @@ public class Grupo2Reproductor extends JFrame {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 anteriorTemaMouseReleased(evt);
             }
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt){
+                anteriorTemaMouseCliked(evt);
+            }
         });
 
         proximoTema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZimIcon/zim-uprigth.png"))); // NOI18N
@@ -176,6 +181,11 @@ public class Grupo2Reproductor extends JFrame {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 proximoTemaMouseReleased(evt);
             }
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt){
+                proximoTemaMouseCliked(evt);
+            }
+
         });
 
         songDisplayName.setBackground(new java.awt.Color(255, 102, 102));
@@ -390,8 +400,16 @@ public class Grupo2Reproductor extends JFrame {
         Icon icono =new ImageIcon(getClass( ).getResource("/ZimIcon/zim-uprigth.png"));
         proximoTema.setIcon(icono);
         proximoTema.repaint();
-    }
 
+    }
+    private void proximoTemaMouseCliked(java.awt.event.MouseEvent evt) {
+        player.skipForward();
+        System.out.println("Clikeaste adelante");
+   }
+    private void anteriorTemaMouseCliked(java.awt.event.MouseEvent evt) {
+        player.skipBackward();
+        System.out.println("Clikeaste atras");
+   }
    
 
     private void pausaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pausaMouseReleased
